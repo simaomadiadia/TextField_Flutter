@@ -16,6 +16,8 @@ class _CampoTextoState extends State<CampoTexto> {
   bool selectedGuarda= false;
   String? _grupoGenero;
   bool receberNotificacoes = false;
+  double _escalaEscolhida = 0.0;
+  String _labelDinamico = "valor selecionado : ";
 
 
 
@@ -114,6 +116,20 @@ class _CampoTextoState extends State<CampoTexto> {
                     setState(() {
                       receberNotificacoes = valor;
                     });
+                  }
+              ),
+              Slider(
+                  value: _escalaEscolhida,
+                  label: _labelDinamico,
+                  divisions: 10,
+                  min: 0,
+                  max: 100,
+                  onChanged: (double valor){
+                      setState(() {
+                        _escalaEscolhida= valor;
+                        _labelDinamico = "valor selecionado :" +valor.toString();
+                      });
+                    print("Escala escolhida ${valor}");
                   }
               )
               ,
