@@ -15,6 +15,9 @@ class _CampoTextoState extends State<CampoTexto> {
 
   bool selectedGuarda= false;
   String? _grupoGenero;
+  bool receberNotificacoes = false;
+
+
 
 
   @override
@@ -89,18 +92,35 @@ class _CampoTextoState extends State<CampoTexto> {
                   children: [
                     RadioListTile<String>(
                       value: "m",
+                      secondary:  Icon(Icons.man),
                       title: const Text("Masculino"),
                     ),
                     RadioListTile<String>(
+                      secondary:  Icon(Icons.woman),
                       value: "f",
                       title: const Text("Feminino"),
                     ),
                   ],
                 ),
               ),
+              SwitchListTile(
+                  title: Text("Receber notificações "),
+                  secondary: Icon(
+                    Icons.notifications
+                  ) ,
+                  activeThumbColor: Colors.blue,
+                  value: receberNotificacoes, 
+                  onChanged: (bool valor){
+                    setState(() {
+                      receberNotificacoes = valor;
+                    });
+                  }
+              )
+              ,
               ElevatedButton(
                   onPressed: (){
                     print(" Voce digitou ${_txtNome.text}");
+                    print("Receber notificacoes ? ${receberNotificacoes}");
                   },
                   child: Text("Salvar"))
             ],
