@@ -12,6 +12,8 @@ class CampoTexto extends StatefulWidget {
 class _CampoTextoState extends State<CampoTexto> {
 
   TextEditingController _txtNome = TextEditingController();
+
+  bool selectedGuarda= false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +47,26 @@ class _CampoTextoState extends State<CampoTexto> {
                   controller: _txtNome,
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.only(top: 8,bottom: 6),
+
+                child: Text(
+                    "Provincias onde deseja frequentar o curso."
+                ),
+              )
+              ,
+              CheckboxListTile(
+                  value: selectedGuarda,
+                  secondary: Icon(Icons.location_city),
+                  onChanged: ( bool? valor){
+                    setState(() {
+                      selectedGuarda = valor!;
+                      print("Valor selecionado $selectedGuarda");
+                    });
+                  },
+                title:Text("Guarda"),
+              )
+              ,
               ElevatedButton(
                   onPressed: (){
                     print(" Voce digitou ${_txtNome.text}");
