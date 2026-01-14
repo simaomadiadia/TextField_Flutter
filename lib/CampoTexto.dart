@@ -14,6 +14,9 @@ class _CampoTextoState extends State<CampoTexto> {
   TextEditingController _txtNome = TextEditingController();
 
   bool selectedGuarda= false;
+  String? _grupoGenero;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,8 +68,36 @@ class _CampoTextoState extends State<CampoTexto> {
                     });
                   },
                 title:Text("Guarda"),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 8,bottom: 6),
+
+                child: Text(
+                    "Genero"
+                ),
               )
               ,
+              RadioGroup<String>(
+                groupValue: _grupoGenero,
+                onChanged: (String? value) {
+                  setState(() {
+                    _grupoGenero = value;
+                  });
+                  print("Selecionado: $_grupoGenero");
+                },
+                child: Column(
+                  children: [
+                    RadioListTile<String>(
+                      value: "m",
+                      title: const Text("Masculino"),
+                    ),
+                    RadioListTile<String>(
+                      value: "f",
+                      title: const Text("Feminino"),
+                    ),
+                  ],
+                ),
+              ),
               ElevatedButton(
                   onPressed: (){
                     print(" Voce digitou ${_txtNome.text}");
